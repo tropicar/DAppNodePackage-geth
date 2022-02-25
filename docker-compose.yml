@@ -9,12 +9,13 @@ services:
     volumes:
       - "geth:/root/.ethereum"
     environment:
-      - "EXTRA_OPTIONS=--http.api eth,net,web3,txpool"
+      - >-
+        EXTRA_OPTIONS=--http.api eth,net,web3,txpool --ws.api
+        eth,net,web3,txpool
       - SYNCMODE
     ports:
-      - "30303"
+      - 30303/tcp
       - 30303/udp
-      - 30304/udp
     restart: unless-stopped
 volumes:
   geth: {}
